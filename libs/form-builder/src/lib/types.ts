@@ -58,7 +58,6 @@ export interface FormSchema {
 }
 
 export interface Dictionary {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [FieldId: string]: React.VoidFunctionComponent<any>;
 }
 
