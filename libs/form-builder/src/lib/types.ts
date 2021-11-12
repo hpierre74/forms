@@ -26,12 +26,12 @@ export interface Validations {
 }
 
 export interface FormField {
-  id: Path<unknown>;
+  id: Path<string>;
   title: string;
   type: string;
-  meta: FormMeta;
-  validation: Validations;
-  defaultValue: UnpackNestedValue<PathValue<unknown, never>> | undefined;
+  meta?: FormMeta | undefined;
+  validation?: Validations | undefined;
+  defaultValue?: UnpackNestedValue<PathValue<unknown, never>> | undefined;
 }
 
 export interface FormFields {
@@ -44,7 +44,7 @@ export interface FormStep {
   submit: {
     label: string;
   };
-  meta: FormMeta;
+  meta?: FormMeta;
 }
 
 export interface FormSteps {
