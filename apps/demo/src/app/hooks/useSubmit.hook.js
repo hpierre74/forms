@@ -3,8 +3,11 @@ import { useDispatch } from 'react-redux';
 import { updateFormData } from '@forms/form-redux';
 
 const transformFields = (x) => x;
-const formSubmit = () => () => ({ type: 'some_scope/SUBMIT' });
-const onExit = () => () => ({ type: 'some_scope/EXIT' });
+const formSubmit = (processedFields) => ({
+  type: 'some_scope/SUBMIT',
+  payload: processedFields
+});
+const onExit = () => ({ type: 'some_scope/EXIT' });
 
 export const useSubmit = (formId) => {
   const dispatch = useDispatch();

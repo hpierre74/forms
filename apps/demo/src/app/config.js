@@ -8,8 +8,8 @@ export const config = {
         birthdate: {
           id: 'birthdate',
           meta: {
-            errorMessage: 'account.invalidBirthdate',
-            label: 'account.birthDay',
+            errorMessage: 'Birth date invalid',
+            label: 'Birth date',
             name: 'birthdate'
           },
           title: 'birthdate',
@@ -17,15 +17,15 @@ export const config = {
           validation: {
             checkDateFormat: {
               key: 'checkDateFormat',
-              message: 'onboarding.rules.birthdateFormat'
+              message: 'Date format must be DD/MM/YYYY'
             },
             checkMinAge: {
               key: 'checkMinAge',
-              message: 'onboarding.rules.birthdateMinAge'
+              message: 'Minimum age'
             },
             required: {
               key: 'required',
-              message: 'forms.required.error',
+              message: 'Required field',
               value: true
             }
           }
@@ -33,8 +33,8 @@ export const config = {
         email: {
           id: 'email',
           meta: {
-            errorMessage: 'account.invalidEmail',
-            label: 'account.email',
+            errorMessage: 'Invalid Email',
+            label: 'Email',
             name: 'email'
           },
           title: 'Email',
@@ -42,13 +42,13 @@ export const config = {
           validation: {
             checkPattern: {
               key: 'checkPattern',
-              message: 'forms.pattern.error',
+              message: 'Email format',
               value:
                 '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
             },
             required: {
               key: 'required',
-              message: 'forms.required.error',
+              message: 'Required field',
               value: true
             }
           }
@@ -56,8 +56,8 @@ export const config = {
         firstName: {
           id: 'firstName',
           meta: {
-            errorMessage: 'account.invalidFirstName',
-            label: 'account.firstName',
+            errorMessage: 'Invalid firstname',
+            label: 'Firstname',
             name: 'firstName'
           },
           title: 'firstName',
@@ -65,7 +65,7 @@ export const config = {
           validation: {
             checkPattern: {
               key: 'checkPattern',
-              message: 'forms.pattern.error',
+              message: 'Firstname format',
               value: "^[a-zA-ZÀ-ȳ ,.'-]+$"
             },
             required: {
@@ -78,8 +78,8 @@ export const config = {
         lastName: {
           id: 'lastName',
           meta: {
-            errorMessage: 'account.invalidLastName',
-            label: 'account.lastName',
+            errorMessage: 'Invaid lastname',
+            label: 'Lastname',
             name: 'lastName'
           },
           title: 'lastName',
@@ -87,12 +87,12 @@ export const config = {
           validation: {
             maxLength: {
               key: 'checkMaxLength',
-              message: 'forms.maxLength.error',
+              message: 'Maximum input length',
               value: 20
             },
             required: {
               key: 'required',
-              message: 'forms.required.error',
+              message: 'Required field',
               value: true
             }
           }
@@ -100,8 +100,8 @@ export const config = {
         password: {
           id: 'password',
           meta: {
-            errorMessage: 'account.invalidPassword',
-            label: 'global.password',
+            errorMessage: 'Invalid Password',
+            label: 'Password',
             name: 'password'
           },
           title: 'password',
@@ -109,24 +109,24 @@ export const config = {
           validation: {
             checkForLower: {
               key: 'checkForLower',
-              message: 'onboarding.rules.lowercase'
+              message: 'Lowercase expected'
             },
             checkForNumber: {
               key: 'checkForNumber',
-              message: 'onboarding.rules.number'
+              message: 'Number expected'
             },
             checkForUpper: {
               key: 'checkForUpper',
-              message: 'onboarding.rules.uppercase'
+              message: 'Uppercase expected'
             },
             checkMinLength: {
               key: 'checkMinLength',
-              message: 'onboarding.rules.charLimit',
+              message: 'Minimum chars expected',
               value: 8
             },
             required: {
               key: 'required',
-              message: 'forms.required.error',
+              message: 'Required field',
               value: true
             }
           }
@@ -141,7 +141,7 @@ export const config = {
             title: 'Email'
           },
           submit: {
-            label: 'global.next'
+            label: 'Next'
           }
         },
         'register-step-1': {
@@ -152,7 +152,7 @@ export const config = {
             title: 'Password'
           },
           submit: {
-            label: 'global.next'
+            label: 'Next'
           }
         },
         'register-step-2': {
@@ -163,7 +163,7 @@ export const config = {
             title: 'First name and Last name'
           },
           submit: {
-            label: 'global.next'
+            label: 'Next'
           }
         },
         'register-step-3': {
@@ -174,7 +174,7 @@ export const config = {
             title: 'Birthdate'
           },
           submit: {
-            label: 'components.register'
+            label: 'Submit'
           }
         }
       },
