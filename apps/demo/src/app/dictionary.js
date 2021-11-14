@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import styled from 'styled-components';
-import { useTranslate } from '@m6web/react-i18n';
 
 import { getValidationRulesHints } from '@forms/form-builder';
 import {
@@ -24,7 +23,6 @@ const TextFieldTopMarginWrapper = styled.div`
 
 export const dictionary = {
   text: ({ errors, errorMessage, ...props }) => {
-    const t = useTranslate();
     const error = errors && errors.type && errorMessage;
 
     return (
@@ -32,21 +30,18 @@ export const dictionary = {
         <ValidatedTextField
           type="text"
           hasError={!!error}
-          errorText={t(error)}
+          errorText={error}
           valid={!!props.value && !error}
           {...props}
-          label={t(props.label)}
+          label={props.label}
         />
       </TextFieldMarginWrapper>
     );
   },
   password: ({ errors, validation, ...props }) => {
-    const t = useTranslate();
     const rules = getValidationRulesHints({
-      t,
       errors,
-      validation,
-      config: {}
+      validation
     });
     const hasError = !!checkRules(props.value, rules).length;
     const fieldError = errors && errors.type;
@@ -60,18 +55,15 @@ export const dictionary = {
           {...props}
           rules={rules}
           colors={validationColors}
-          label={t(props.label)}
+          label={props.label}
         />
       </TextFieldTopMarginWrapper>
     );
   },
   date: ({ errors, validation, label, ...props }) => {
-    const t = useTranslate();
     const rules = getValidationRulesHints({
-      t,
       errors,
-      validation,
-      config: {}
+      validation
     });
     const hasError = !!checkRules(props.value, rules).length;
     const fieldError = errors && errors.type;
@@ -80,7 +72,7 @@ export const dictionary = {
     return (
       <TextFieldMarginWrapper>
         <BirthdateInput
-          label={t(label)}
+          label={label}
           hasError={hasError}
           valid={isValid}
           rules={rules}
@@ -91,11 +83,9 @@ export const dictionary = {
     );
   },
   submit: ({ label, ...props }) => {
-    const t = useTranslate();
-
     return (
       <button type="submit" {...props}>
-        {t(label)}
+        {label}
       </button>
     );
   }
