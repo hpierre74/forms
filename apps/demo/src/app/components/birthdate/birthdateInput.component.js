@@ -3,7 +3,6 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { useTranslate } from '@m6web/react-i18n';
 import { ValidatedTextField } from '../textfield';
 import {
   formatBirthdate,
@@ -28,7 +27,6 @@ export const BirthdateInput = ({
   onChange,
   ...props
 }) => {
-  const t = useTranslate();
   const previousInputValue = useRef(0);
 
   const handleChange = (event) => {
@@ -57,7 +55,7 @@ export const BirthdateInput = ({
 
   return (
     <StyledValidatedTextField
-      label={label || t('onboarding.labels.birthdate')}
+      label={label || 'onboarding.labels.birthdate'}
       data-testid="birthdate-field"
       type="text"
       name="birthdate"

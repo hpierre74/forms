@@ -174,7 +174,7 @@ export const config = {
             title: 'Birthdate'
           },
           submit: {
-            label: 'global.next'
+            label: 'components.register'
           }
         }
       },
