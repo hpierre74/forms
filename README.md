@@ -14,9 +14,9 @@ As we were eager to keep some control over the process, we went with [react-hook
 
 ## :package: Packages
 
-- ⚛️ `@bedrockstreaming/form-builder` :construction_worker:
-- ⚛️ `@bedrockstreaming/form-validation-rule-list` 🧑‍⚖️
-- :convenience_store: `@bedrockstreaming/form-redux`
+- ⚛️ [@bedrockstreaming/form-builder](libs/form-builder/README.md) :construction_worker:
+- ⚛️ [@bedrockstreaming/form-validation-rule-list](libs/form-validation-rule-list/README.md) 🧑‍⚖️
+- :convenience_store: [@bedrockstreaming/form-redux](libs/form-redux/README.md)
 
 ## :railway_track: Road map
 
