@@ -11,46 +11,46 @@ import { RuleObject } from '../rule';
 
 import { DotTextList } from './dotTextList.component';
 
-interface RulesItem {
+export interface RulesItem {
   key: string;
   fontWeightClass: string;
   itemColorClass: string;
   status: StatusValue;
 }
 
-interface BaseRules {
+export interface BaseRules {
   errors: string[];
   items: RulesItem[];
 }
 
 export interface EnhancedRules extends RuleObject, BaseRules {}
 
-export interface ValidationRuleListComponentProps {
+export interface ValidationRuleListProps {
   id?: string;
-  rules: EnhancedRules[];
-  colors: any;
-  value: any;
-  component: React.FunctionComponent<any>;
-  componentProp: any;
-  onError: (value: any) => void;
+  rules: RuleObject[];
+  value?: string | number;
+  component?: React.FunctionComponent<any>;
+  componentProp?: string;
+  onError?: (value: any) => void;
+  onChange?: (event: any) => void;
   className?: string;
   name?: string;
   valueProp?: any;
   weightByRulesClassnames: ClassnamesByStatusNumbers;
   colorByRulesClassnames: ClassnamesByStatusNumbers;
+  [key: string]: any;
 }
 
-export const ValidationRuleListComponent = ({
-  rules,
-  colors,
-  value,
-  component: Component,
-  componentProp,
+export const ValidationRuleList = ({
+  rules = [],
+  value = '',
+  component: Component = DotTextList,
+  componentProp = 'items',
   weightByRulesClassnames,
   colorByRulesClassnames,
-  onError,
+  onError = _.noop,
   ...otherProps
-}: ValidationRuleListComponentProps) => {
+}: ValidationRuleListProps) => {
   if (rules.length) {
     const { items, errors } = rules.reduce(
       (acc, { check, key }) => {
@@ -79,57 +79,3 @@ export const ValidationRuleListComponent = ({
 
   return null;
 };
-
-ValidationRuleListComponent.defaultProps = {
-  rules: [],
-  colors: undefined,
-  value: '',
-  component: DotTextList,
-  componentProp: 'items',
-  onError: _.noop
-};
-
-ValidationRuleListComponent.displayName = 'ValidationRuleList';
-
-export const withValidationRuleList = (
-  ToEnhance: React.FunctionComponent<any>
-) => {
-  const Enhanced = ({
-    rules,
-    colors,
-    value,
-    component,
-    componentProp,
-    valueProp,
-    onError,
-    weightByRulesClassnames,
-    colorByRulesClassnames,
-    ...otherProps
-  }: ValidationRuleListComponentProps) => {
-    const componentProps = { ...otherProps, [valueProp]: value };
-    const { className } = otherProps;
-
-    return (
-      <div className={className}>
-        <ToEnhance {...componentProps} />
-        <ValidationRuleListComponent
-          rules={rules}
-          colors={colors}
-          value={value}
-          component={component}
-          componentProp={componentProp}
-          onError={onError}
-          id={otherProps.name}
-          weightByRulesClassnames={weightByRulesClassnames}
-          colorByRulesClassnames={colorByRulesClassnames}
-        />
-      </div>
-    );
-  };
-
-  Enhanced.defaultProps = { valueProp: 'value' };
-
-  return Enhanced;
-};
-
-export default ValidationRuleListComponent;

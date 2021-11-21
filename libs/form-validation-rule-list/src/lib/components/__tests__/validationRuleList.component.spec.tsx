@@ -1,29 +1,38 @@
 import { screen, render } from '@testing-library/react';
 import _ from 'lodash';
 
-import ValidationRuleList from '../validationRuleList.component';
-import { rule } from '../../rule';
+import {
+  ValidationRuleList,
+  ValidationRuleListProps
+} from '../validationRuleList.component';
+import { RuleObject, rule } from '../../rule';
 import { DotText } from '../dotText.component';
 
-jest.unmock('../dotTextList.component');
-jest.unmock('../dotText.component');
-jest.unmock('../../rule');
-jest.unmock('../validationRuleList.component');
-
 describe('<ValidationRuleList />', () => {
-  let props;
-  let lengthHelper;
-  let fooHelper;
+  let props: ValidationRuleListProps;
+  let lengthHelper: RuleObject;
+  let fooHelper: RuleObject;
 
   const getWrapper = async () => render(<ValidationRuleList {...props} />);
 
   beforeEach(() => {
-    lengthHelper = rule('Length helper', (x) => x.length < 10);
+    lengthHelper = rule(
+      'Length helper',
+      (value: string | number | undefined) => _.get(value, 'length', 11) < 10
+    );
     fooHelper = rule('Foo helper', (x) => !!x);
     props = {
-      weightByRulesClassnames: {},
-      colorByRulesClassnames: {},
-      rules: []
+      rules: [] as RuleObject[],
+      weightByRulesClassnames: {
+        0: 'with-idle-weight',
+        1: 'with-complete-weight',
+        2: 'with-incomplete-weight'
+      },
+      colorByRulesClassnames: {
+        0: 'with-idle-color',
+        1: 'with-complete-color',
+        2: 'with-incomplete-color'
+      }
     };
   });
 
@@ -38,7 +47,7 @@ describe('<ValidationRuleList />', () => {
 
     await getWrapper();
 
-    expect(screen.queryByRole('list').children).toHaveLength(
+    expect(screen.queryByRole('list')?.children).toHaveLength(
       props.rules.length
     );
   });
@@ -49,8 +58,8 @@ describe('<ValidationRuleList />', () => {
 
     await getWrapper();
 
-    expect(screen.queryByRole('list').children).toHaveLength(0);
-    expect(screen.queryByRole('list').getAttribute('something')).toBeDefined();
+    expect(screen.queryByRole('list')?.children).toHaveLength(0);
+    expect(screen.queryByRole('list')?.getAttribute('something')).toBeDefined();
   });
 
   it('should use provided component to display list', async () => {
@@ -60,24 +69,14 @@ describe('<ValidationRuleList />', () => {
 
     await getWrapper();
 
-    expect(screen.queryByRole('list').children).toHaveLength(
+    expect(screen.queryByRole('list')?.children).toHaveLength(
       props.rules.length
     );
-    expect(screen.queryByRole('list').getAttribute('something')).toBeNull();
+    expect(screen.queryByRole('list')?.getAttribute('something')).toBeNull();
   });
 
   it('should pass corresponding class for colors and font-weight to item', async () => {
     props.rules = [lengthHelper];
-    props.weightByRulesClassnames = {
-      0: 'with-idle-weight',
-      1: 'with-complete-weight',
-      2: 'with-incomplete-weight'
-    };
-    props.colorByRulesClassnames = {
-      0: 'with-idle-color',
-      1: 'with-complete-color',
-      2: 'with-incomplete-color'
-    };
 
     await getWrapper();
 
@@ -89,11 +88,6 @@ describe('<ValidationRuleList />', () => {
   it('should always set the default state color when no check function are passed', async () => {
     const ruleWithoutCheckFunction = rule('awesome key');
     props.rules = [ruleWithoutCheckFunction];
-    props.colorByRulesClassnames = {
-      0: 'with-idle-color',
-      1: 'with-complete-color',
-      2: 'with-incomplete-color'
-    };
 
     await getWrapper();
 
@@ -106,11 +100,6 @@ describe('<ValidationRuleList />', () => {
     const ruleAlwaysTrue = rule('awesome key', () => true);
     props.rules = [ruleAlwaysTrue];
     props.value = 'yolo';
-    props.colorByRulesClassnames = {
-      0: 'with-idle-color',
-      1: 'with-complete-color',
-      2: 'with-incomplete-color'
-    };
 
     await getWrapper();
 
@@ -123,11 +112,6 @@ describe('<ValidationRuleList />', () => {
     const ruleAlwaysTrue = rule('awesome key', () => true);
     props.rules = [ruleAlwaysTrue];
     props.value = '';
-    props.colorByRulesClassnames = {
-      0: 'with-idle-color',
-      1: 'with-complete-color',
-      2: 'with-incomplete-color'
-    };
 
     await getWrapper();
 
@@ -139,11 +123,6 @@ describe('<ValidationRuleList />', () => {
   it('should return the idle status when rule evaluates to true but value prop length is undefined', async () => {
     const ruleAlwaysTrue = rule('awesome key', () => true);
     props.rules = [ruleAlwaysTrue];
-    props.colorByRulesClassnames = {
-      0: 'with-idle-color',
-      1: 'with-complete-color',
-      2: 'with-incomplete-color'
-    };
 
     await getWrapper();
 
