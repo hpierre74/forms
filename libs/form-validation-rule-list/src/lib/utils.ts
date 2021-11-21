@@ -1,6 +1,11 @@
-import { COMPLETE_STATE, DEFAULT_STATE, INCOMPLETE_STATE } from './constants';
+import {
+  COMPLETE_STATE,
+  DEFAULT_STATE,
+  INCOMPLETE_STATE,
+  ClassnamesByStatusNumbers,
+  ClassnamesByStatusStrings
+} from './constants';
 import _ from 'lodash';
-import { ClassnamesByStatusNumbers, ClassnamesByStatusStrings } from './types';
 
 export type GetWeightByRulesClassnames = ClassnamesByStatusStrings;
 
@@ -32,3 +37,5 @@ export const getColorByRulesClassnames = ({
     },
     colors || {}
   );
+
+// export const getStatusByState

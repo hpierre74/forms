@@ -1,9 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 
-import { INCOMPLETE_STATE } from '../constants';
+import {
+  INCOMPLETE_STATE,
+  STATUS_BY_STATE,
+  StatusValue,
+  ClassnamesByStatusNumbers
+} from '../constants';
 import { RuleObject } from '../rule';
-import { ClassnamesByStatusNumbers } from '../types';
 
 import { DotTextList } from './dotTextList.component';
 
@@ -11,6 +15,7 @@ interface RulesItem {
   key: string;
   fontWeightClass: string;
   itemColorClass: string;
+  status: StatusValue;
 }
 
 interface BaseRules {
@@ -18,7 +23,7 @@ interface BaseRules {
   items: RulesItem[];
 }
 
-interface EnhancedRules extends RuleObject, BaseRules {}
+export interface EnhancedRules extends RuleObject, BaseRules {}
 
 export interface ValidationRuleListComponentProps {
   id?: string;
@@ -56,7 +61,8 @@ export const ValidationRuleListComponent = ({
         const nextItems = _.concat(acc.items, {
           key,
           fontWeightClass: weightByRulesClassnames[result],
-          itemColorClass: colorByRulesClassnames[result]
+          itemColorClass: colorByRulesClassnames[result],
+          status: STATUS_BY_STATE[result]
         });
 
         return { items: nextItems, errors: nextErrors };
