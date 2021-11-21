@@ -2,15 +2,6 @@ import { act, render } from '@testing-library/react';
 import { FormBuilder } from '../formBuilder';
 import { FormBuilderError } from '../utils/formBuilderError.utils';
 
-jest.unmock('../formBuilder.tsx');
-jest.unmock('../components/formField.component.tsx');
-jest.unmock('../components/submitField.component.tsx');
-jest.unmock('../components/stepper.component.tsx');
-jest.unmock('../utils/handleFormBuilderError.util.ts');
-jest.unmock('../utils/getSchemaInfo.util.ts');
-jest.unmock('../hooks/useCheckFormStepValidity.hook.ts');
-jest.unmock('react-hook-form');
-
 const makeStep = ({ fieldsById, stepId, label }) => ({
   [stepId]: {
     fieldsById,

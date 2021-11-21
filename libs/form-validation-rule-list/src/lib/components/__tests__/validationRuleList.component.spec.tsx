@@ -37,7 +37,7 @@ describe('<ValidationRuleList />', () => {
   });
 
   it('should render validation-rule-list component with no list', async () => {
-    await render(<ValidationRuleList {...props} />);
+    await getWrapper();
 
     expect(screen.queryByRole('list')).toBeNull();
   });

@@ -1,10 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import _ from 'lodash';
 
-import {
-  ValidationRuleList,
-  ValidationRuleListProps
-} from '../validationRuleList.component';
+import { ValidationRuleListProps } from '../validationRuleList.component';
 
 import { withValidationRuleList } from '../withValidationRuleList.hoc';
 import { RuleObject, rule } from '../../rule';
@@ -51,7 +48,7 @@ describe('<ValidationRuleList />', () => {
   });
 
   it('should render validation-rule-list component with no list', async () => {
-    await render(<ValidationRuleList {...props} />);
+    await getWrapper();
 
     expect(screen.queryByRole('list')).toBeNull();
   });
