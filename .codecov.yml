@@ -1,0 +1,20 @@
+coverage:
+  precision: 2
+  round: down
+  status:
+    project:
+      form-builder:
+        target: 90%
+        flags: form-builder
+    patch:
+      default:
+        enabled: no
+        if_not_found: success
+    changes:
+      default:
+        enabled: no
+        if_not_found: success
+flags:
+  form-builder:
+    paths:
+      - libs/form-builder/src
