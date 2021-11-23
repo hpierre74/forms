@@ -5,7 +5,8 @@ coverage:
     project:
       form-builder:
         target: 90%
-        flags: form-builder
+        flags:
+          - form-builder
     patch:
       default:
         enabled: no
