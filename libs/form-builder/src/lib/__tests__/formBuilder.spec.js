@@ -75,13 +75,12 @@ describe('<FormBuilder />', () => {
   };
   // aria-checked="true"
   const CORRECT_DICTIONARY = {
-    text: ({ label, ...props }) =>
-      console.log(props) || (
-        <fieldset>
-          <label>{label}</label>
-          <input type="text" placeholder="Test" />
-        </fieldset>
-      ),
+    text: ({ label, ...props }) => (
+      <fieldset>
+        <label>{label}</label>
+        <input type="text" placeholder="Test" />
+      </fieldset>
+    ),
     checkbox: ({ label, value = false, ...props }) => (
       <fieldset>
         <label>{label}</label>
