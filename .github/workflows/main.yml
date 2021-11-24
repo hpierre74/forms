@@ -28,7 +28,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./home/runner/work/forms/forms/coverage/**
+          directories: ./home/runner/work/forms/forms/coverage/libs/form-builder
 
   pr:
     runs-on: ubuntu-latest
