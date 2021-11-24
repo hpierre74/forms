@@ -52,7 +52,7 @@ const Form = () => {
         dictionary={dictionary}
         schema={schema}
         onNextStep={handleNextStep}
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         currentStepIndex={currentStepIndex}
         isLastStep={isLastStep}
         extraValidation={extraValidation}
