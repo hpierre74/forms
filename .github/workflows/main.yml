@@ -24,12 +24,11 @@ jobs:
           cache: yarn
       - run: yarn install --frozen-lockfile --non-interactive --no-progress --prefer-offline
       - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=test --parallel --max-parallel=2 --code-coverage
       - name: Codecov upload
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directories: ./home/runner/work/forms/forms/coverage/libs/form-builder
 
   pr:
     runs-on: ubuntu-latest
